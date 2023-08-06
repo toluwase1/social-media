@@ -21,21 +21,16 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @NotNull
-    @Column(name = "name")
+    @Column(nullable = false, name = "name", unique = false)
     private String name;
 
-    @NotNull
-    @Column(name = "email")
-//    @Email
+    @Column(nullable = false, name = "email", unique = true)
     private String email;
 
-    @NotNull
-    @Column(name = "last_name")
+    @Column(nullable = false, name = "last_name")
     private String lastName;
 
-    @NotNull
-    @Column(name = "password")
+    @Column(nullable = false, name = "password")
     private String password;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)

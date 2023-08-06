@@ -20,5 +20,6 @@ spring:
     hikari:
       poolName: Hikari
       auto-commit: false
-
-
+  security:
+    jwt:
+      secret: ThisIsArEALLYlONGsECRETtHATNOoNEcANaCTUALLYgueSs.tRyItIfYoUcAN
