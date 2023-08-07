@@ -23,7 +23,6 @@ public class PostsController {
         this.jwtDecoder = jwtDecoder;
         this.jwtUtil = jwtUtil;
     }
-    //ResponseEntity<CustomResponse<Object>>
     @GetMapping("/all")
     public ResponseEntity<CustomResponse<Object>> getAllPosts(){
         return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
