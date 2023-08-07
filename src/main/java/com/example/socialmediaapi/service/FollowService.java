@@ -19,7 +19,7 @@ public class FollowService {
     }
     public CustomResponse<Object> create(FollowRequest followRequest) {
         if (userService.isFollowing(followRequest.getUserId(), followRequest.getFollowingId())){
-            return new CustomResponse<>(false, true, "already followed", HttpStatus.CONFLICT.value())
+            return new CustomResponse<>(false, true, "already followed", HttpStatus.CONFLICT.value());
         }
         Follow follow = new Follow();
         BeanUtils.copyProperties(followRequest,follow);
