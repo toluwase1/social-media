@@ -113,7 +113,8 @@ This project can be easily ran on your localhost too.
 ### Building locally without docker
 - Java 17
 - postgres
-- create database with socialMediaApp
+- Maven
+- create postgres database with name: socialMediaApp
 - supply your credentials in the `application.properties` file
 - The app will run on port 8080 if you build without docker
 - example: `localhost:8080/api/v1/auth/register`
