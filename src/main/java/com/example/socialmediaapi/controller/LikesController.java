@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/like")
+@RequestMapping("/api/v1/like")
 public class LikesController {
     private final LikeService likeService;
 

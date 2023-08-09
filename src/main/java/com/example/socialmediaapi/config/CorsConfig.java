@@ -54,9 +54,9 @@ class SwaggerConfig  implements WebMvcConfigurer {
     }
     private ApiInfo apiDetails() {
         return new ApiInfo(
-                "Human Resource System", " Human Resource API model", "1.0", "Free to use",
-                new springfox.documentation.service.Contact("Human Resource App", "http://localhost:8080", "toluwasethomas1@gmail.com"),
-                "API License", "http://localhost:8080",
+                "Social Media App", "Social Media App", "1.0", "Free to use",
+                new springfox.documentation.service.Contact("Social Media App", "http://localhost:8084", "toluwasethomas1@gmail.com"),
+                "API License", "http://localhost:8084",
                 Collections.emptyList());
     }
 
