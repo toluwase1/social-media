@@ -1,12 +1,11 @@
 package com.example.socialmediaapi.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -16,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class PostImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
 
     @Column(name = "name")
@@ -27,7 +26,6 @@ public class PostImage {
 
     @Column(name = "data",length = 1000)
     private byte[] data;
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "post_id")
     Post post;

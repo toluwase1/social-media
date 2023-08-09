@@ -1,9 +1,8 @@
 package com.example.socialmediaapi.controller;
 
-import com.example.socialmediaapi.config.JwtDecoder;
+import com.example.socialmediaapi.config.JwtService;
 import com.example.socialmediaapi.request.PostRequest;
 import com.example.socialmediaapi.response.CustomResponse;
-import com.example.socialmediaapi.security.JwtUtil;
 import com.example.socialmediaapi.service.PostsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,15 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/post")
+@RequestMapping("/api/v1/post")
 public class PostsController {
     private final PostsService postService;
 
-    private final JwtDecoder jwtDecoder;
-    private final JwtUtil jwtUtil;
-    public PostsController(PostsService postService, JwtDecoder jwtDecoder, JwtUtil jwtUtil) {
+    private final JwtService jwtService;
+    private final JwtService jwtUtil;
+    public PostsController(PostsService postService, JwtService jwtService, JwtService jwtUtil) {
         this.postService = postService;
-        this.jwtDecoder = jwtDecoder;
+        this.jwtService = jwtService;
         this.jwtUtil = jwtUtil;
     }
     @GetMapping("/all")
@@ -44,10 +43,7 @@ public class PostsController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@RequestBody PostRequest post,
-                                       @RequestHeader("Authorization") String token){
-        String id = jwtUtil.getUserID(token);
-        post.setUserId(Integer.parseInt(id));
+    public ResponseEntity<Object> create(@RequestBody PostRequest post){
         return new ResponseEntity<>(postService.create(post),HttpStatus.CREATED);
     }
 

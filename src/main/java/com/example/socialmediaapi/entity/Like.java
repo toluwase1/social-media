@@ -1,13 +1,10 @@
 package com.example.socialmediaapi.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 @Entity
 @Getter
 @Setter
@@ -19,12 +16,10 @@ public class Like {
     @Id
     @Column(name = "id")
     private  int id;
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     User user;
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "post_id", nullable = false)
     Post post;
 }

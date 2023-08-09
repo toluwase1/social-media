@@ -2,9 +2,11 @@ package com.example.socialmediaapi.service;
 
 import com.example.socialmediaapi.entity.Follow;
 import com.example.socialmediaapi.entity.Post;
+import com.example.socialmediaapi.entity.User;
 import com.example.socialmediaapi.repository.PostsRepository;
 import com.example.socialmediaapi.request.PostRequest;
 import com.example.socialmediaapi.response.CustomResponse;
+import com.example.socialmediaapi.response.PostResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -48,9 +50,16 @@ public class PostsService {
 
     public CustomResponse<Object> create(PostRequest post) {
         Post dbPost = new Post();
-        BeanUtils.copyProperties(post, dbPost);
+        User user = new User();
+        user.setId(post.getUserId());
+        dbPost.setDescription(post.getDescription());
+        dbPost.setUser(user);
         postsRepository.save(dbPost);
-        return new CustomResponse<>(true, false, dbPost, HttpStatus.CREATED.value());
+        PostResponse postResponse = new PostResponse();
+        postResponse.setDescription(dbPost.getDescription());
+        postResponse.setId(dbPost.getId());
+        postResponse.setUserId(user.getId());
+        return new CustomResponse<>(true, false, postResponse, HttpStatus.CREATED.value());
     }
 
     public CustomResponse<Object> getAllPostsByUser(int userId) {
