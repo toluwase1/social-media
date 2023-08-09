@@ -116,7 +116,7 @@ This project can be easily ran on your localhost too.
 - Maven
 - create postgres database with name: socialMediaApp
 - supply your credentials in the `application.properties` file
-- The app will run on port 8080 if you build without docker
+- The app will run on port 8084 if you build without docker
 - example: `localhost:8080/api/v1/auth/register`
 - run button || or cd into the app directory and then run this command on your terminal
 - `mvn spring-boot:run -Dspring-boot.run.main=com.example.socialmediaapi.SocialMediaApiApplication
