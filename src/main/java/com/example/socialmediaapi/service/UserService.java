@@ -33,8 +33,8 @@ public class UserService {
         return user;
     }
 
-    public User getByEmail(String email){
-        User user = userRepository.findByEmail(email);
+    public Optional<User> getByEmail(String email){
+        Optional<User> user = userRepository.findByEmail(email);
         return user;
     }
 

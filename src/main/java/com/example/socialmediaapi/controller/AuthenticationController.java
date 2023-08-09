@@ -1,38 +1,43 @@
 package com.example.socialmediaapi.controller;
 
-import com.example.socialmediaapi.entity.User;
-import com.example.socialmediaapi.request.LoginRequest;
 import com.example.socialmediaapi.request.RegisterRequest;
-import com.example.socialmediaapi.response.CustomResponse;
-import com.example.socialmediaapi.security.JwtUtil;
+import com.example.socialmediaapi.security.AuthenticationRequest;
+import com.example.socialmediaapi.security.AuthenticationResponse;
 import com.example.socialmediaapi.service.AuthenticationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+
+
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
+@AllArgsConstructor
 public class AuthenticationController {
-    private final AuthenticationService authenticationService;
 
-    @Autowired
-    public AuthenticationController(AuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
+    private final AuthenticationService service;
+
+    @PostMapping("/register")
+    public ResponseEntity<Object> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(service.register(request));
     }
-    @PostMapping("/login")
-    public ResponseEntity<CustomResponse<Object>> login(@RequestBody LoginRequest loginRequest)  {
-        return ResponseEntity.ok(authenticationService.login(loginRequest.getEmail(), loginRequest.getPassword()));
+    @PostMapping("/authenticate")
+    public ResponseEntity<Object> authenticate(@RequestBody AuthenticationRequest request) {
+        return ResponseEntity.ok(service.authenticate(request));
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<CustomResponse<Object>> signup(@RequestBody RegisterRequest registerRequest){
-        return ResponseEntity.ok(authenticationService.signup(registerRequest));
+    @PostMapping("/refresh-token")
+    public void refreshToken(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        service.refreshToken(request, response);
     }
 
 }

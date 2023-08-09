@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-    container_name: app
+    container_name: social-media-api
     depends_on:
       - db
     ports:
@@ -16,7 +16,7 @@ services:
 
   db:
     image: postgres:latest
-    container_name: db
+    container_name: social-media
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password

@@ -1,12 +1,10 @@
 package com.example.socialmediaapi.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -27,9 +25,8 @@ public class UserImage {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "data",length = 1000)
+    @Column(name = "data",length = 1000, nullable = false)
     private byte[] data;
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;

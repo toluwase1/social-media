@@ -1,11 +1,10 @@
 package com.example.socialmediaapi.entity;
 
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Setter
@@ -15,12 +14,10 @@ import java.util.Set;
 public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
-    @NotNull
     @Column(name = "description")
     private String description;
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
