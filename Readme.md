@@ -101,6 +101,8 @@ This project is dockerized for easy deployment and containerization. You can bui
 To build the Docker image, navigate to the project root and execute:
 The app will run on port 8099 if you build with docker
 - example: `localhost:8099/api/v1/auth/register`
+- supply your credentials in the `application.yml` file including a random value for jwt secret-key eg `secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  `
 
 command below refers to my make file which calls all the required command together
 ```bash 
@@ -115,9 +117,9 @@ This project can be easily ran on your localhost too.
 - postgres
 - Maven
 - create postgres database with name: socialMediaApp
-- supply your credentials in the `application.properties` file
+- supply your credentials in the `application.properties` file including a random value for jwt.secret eg `jwt.secret = "mysupersecretkeymysupersecretkeymysupersecretkey"`
 - The app will run on port 8084 if you build without docker
-- example: `localhost:8080/api/v1/auth/register`
+- example: `localhost:8084/api/v1/auth/register`
 - run button || or cd into the app directory and then run this command on your terminal
 - `mvn spring-boot:run -Dspring-boot.run.main=com.example.socialmediaapi.SocialMediaApiApplication
   `
